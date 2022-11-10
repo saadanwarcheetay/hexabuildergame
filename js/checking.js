@@ -81,8 +81,9 @@ function consolidateBlocks(hex,side,index){
 	hex.texts.push(new Text(hex.x,hex.y,"+ "+adder.toString(),"bold Q ",deletedBlocks[0].color,fadeUpAndOut));
 		hex.lastColorScored = deletedBlocks[0].color;
 	score += adder;
-	vibrate();
 	sound();
+	vibrate();
+	
 }
 
 function vibrate(){
@@ -90,6 +91,6 @@ function vibrate(){
 }
 
 function sound(){
-var audio = new Audio('audio_file.mp3');
+var audio = new Audio('audio.mp3');
 audio.play();
 }
