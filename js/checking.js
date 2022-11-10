@@ -82,7 +82,7 @@ function consolidateBlocks(hex,side,index){
 		hex.lastColorScored = deletedBlocks[0].color;
 	score += adder;
 	sound();
-	vibrate();
+	// vibrate();
 	
 }
 
