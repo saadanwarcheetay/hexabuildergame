@@ -82,7 +82,7 @@ function consolidateBlocks(hex,side,index){
 		hex.lastColorScored = deletedBlocks[0].color;
 	score += adder;
 	sound();
-	vibrate();
+	// vibrate();
 	
 }
 
@@ -91,6 +91,7 @@ function vibrate(){
 }
 
 function sound(){
-var audio = new Audio('audio.mp3');
+var audio = new Audio('correct-match.mp3');
+// correct_audio= document.getElementById("score");
 audio.play();
 }

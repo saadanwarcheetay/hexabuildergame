@@ -57,11 +57,13 @@ function toggleDevTools() {
 	$('#devtools').toggle();
 }
 
+
 function resumeGame() {
 	gameState = 1;
 	hideUIElements();
 	$('#pauseBtn').show();
 	$('#restartBtn').hide();
+    // back_sound(true);
 	importing = 0;
 	startTime = Date.now();
 	setTimeout(function() {
@@ -210,6 +212,36 @@ function exportHistory() {
 	toggleDevTools();
 }
 
+function back_sound(flag){
+	// var audio = new Audio('back_music.mp3');
+	if (flag == true)
+	{
+		back_music.play();
+		back_music.loop=flag;
+	//    document.getElementById("myAudio").play();
+	//    document.getElementById("myAudio").loop= true;
+		
+		// audio.play();
+		// audio.loop=flag;
+		console.log("in true section", flag);
+	}
+	else if(flag == false)
+	{
+        back_music.loop=false;
+		back_music.pause();
+
+		//  console.log("close");
+		// document.getElementById("myAudio").loop= false;
+		// document.getElementById("myAudio").pause();
+	
+	}
+}
+
+function end_sound()
+{
+   end_audio=document.getElementById("endaudio");
+   end_audio.play();	
+}
 function setStartScreen() {
 	$('#startBtn').show();
 	init();
@@ -228,7 +260,6 @@ function setStartScreen() {
 }
 
 var spd = 1;
-
 function animLoop() {
 	switch (gameState) {
 	case 1:
@@ -241,6 +272,7 @@ function animLoop() {
 		}
 
 		if(gameState == 1 ){
+			back_sound(true);
 			if(!MainHex.delay) {
 				update(dt);
 			}
@@ -255,7 +287,7 @@ function animLoop() {
 			var saveState = localStorage.getItem("saveState") || "{}";
 			saveState = JSONfn.parse(saveState);
 			gameState = 2;
-
+            
 			setTimeout(function() {
 				enableRestart();
 			}, 150);
@@ -281,6 +313,7 @@ function animLoop() {
 	case -1:
 		requestAnimFrame(animLoop);
 		render();
+
 		break;
 
 	case 2:
@@ -343,7 +376,9 @@ function checkGameOver() {
 			}
 			writeHighScores();
 			gameOverDisplay();
+			back_sound(false);
 			return true;
+			
 		}
 	}
 	return false;

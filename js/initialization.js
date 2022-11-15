@@ -1,4 +1,8 @@
+
 $(document).ready(function() {
+	back_music=document.getElementById("myAudio");
+	correct_audio= document.getElementById("score");
+	end_audio=document.getElementById("endaudio");
 	initialize();
 });
 function initialize(a) {
@@ -152,11 +156,11 @@ function initialize(a) {
 			e.preventDefault();
 		}, false);
 		$(window).resize(scaleCanvas);
-		$(window).unload(function() {
+		// $(window).unload(function() {
 
-			if (gameState == 1 || gameState == -1 || gameState === 0) localStorage.setItem("saveState", exportSaveState());
-			else localStorage.setItem("saveState", "{}");
-		});
+		// 	// if (gameState == 1 || gameState == -1 || gameState === 0) localStorage.setItem("saveState", exportSaveState());
+		// 	// else localStorage.setItem("saveState", "{}");
+		// });
 
 		addKeyListeners();
 		(function(i, s, o, g, r, a, m) {
@@ -211,9 +215,14 @@ function initialize(a) {
 }
 
 function startBtnHandler() {
+	back_sound(true);	
+	console.log("test")
 	setTimeout(function() {
+
 		if (settings.platform == "mobile") {
 			try {
+		
+				 
 				document.body.removeEventListener('touchstart', handleTapBefore, false);
 			} catch (e) {
 
@@ -254,12 +263,15 @@ function startBtnHandler() {
 		checkVisualElements(0);
 	} else {
 		resumeGame();
+		back_sound(true);
 	}
 }
 
 function handlePause() {
-	if (gameState == 1 || gameState == 2) {
+	if (gameState == 1 || gameState == 2){
+
 		pause();
+		
 	}
 }
 

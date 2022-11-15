@@ -142,6 +142,7 @@ function hideText() {
 }
 
 function gameOverDisplay() {
+	end_sound();
 	settings.ending_block=false;
 	Cookies.set("visited",true);
 	var c = document.getElementById("canvas");
@@ -173,7 +174,6 @@ function pause(o) {
     if (gameState == 0 || gameState == 2 || !pausable) {
         return;
     }
-
 	pausable = false;
 	writeHighScores();
 	var message;
@@ -193,6 +193,7 @@ function pause(o) {
 		}
 
 		$("#pauseBtn").attr("src", "./images/btn_pause.svg");
+		back_sound(true);
 		$('.helpText').fadeOut(300, 'linear');
 		$('#overlay').fadeOut(300, 'linear');
 		hideText();
@@ -204,6 +205,7 @@ function pause(o) {
 		$('#restartBtn').fadeIn(300, "linear");
 		$('#buttonCont').fadeIn(300, "linear");
 		$('.helpText').fadeIn(300, 'linear');
+		back_sound(false);
 		if (message == 'paused') {
 			showText(message);
 		}
